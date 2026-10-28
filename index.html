@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revit Version Checker</title>
+  <meta name="description" content="Drop a Revit file to see which version of Revit saved it. Runs entirely in your browser; your file is never uploaded.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231d4ed8'/%3E%3Cpath d='M9 8h14M9 14h14M9 20h9' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/Syne-Extra.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--accent)"/><path d="M9 8h14M9 14h14M9 20h9" stroke="#fff" stroke-width="3"/></svg>
+        <span>Revit Version Checker</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <p class="eyebrow">Free tool</p>
+      <h1>Which Revit saved this file?</h1>
+      <p class="lede">Drop an .rvt, .rfa, .rte or .rft file to see the Revit version without opening Revit.</p>
+
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Drop a Revit file here or press Enter to choose one">
+        <svg class="dz-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 31V9m0 0-8 8m8-8 8 8M9 30v7a2 2 0 0 0 2 2h26a2 2 0 0 0 2-2v-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+        <p class="dz-title">Drag &amp; drop a Revit file here</p>
+        <p class="dz-sub">.rvt &nbsp;·&nbsp; .rfa &nbsp;·&nbsp; .rte &nbsp;·&nbsp; .rft</p>
+        <button type="button" id="choose-btn" class="btn btn-primary">Choose file</button>
+
+        <div id="status" class="status" hidden aria-live="polite">
+          <p id="status-text">Reading…</p>
+          <div class="progress is-indeterminate"><div id="progress-bar" class="progress-bar"></div></div>
+        </div>
+      </div>
+      <input type="file" id="file-input" accept=".rvt,.rfa,.rte,.rft" hidden>
+      <p class="privacy">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        Your file never leaves your computer.
+      </p>
+
+      <div id="result" class="result" hidden tabindex="-1" aria-live="polite">
+        <div class="result-head">
+          <h2 id="result-headline" class="result-headline"></h2>
+          <span id="result-lt" class="badge" hidden>Revit LT</span>
+        </div>
+        <p id="result-error" class="result-error" hidden></p>
+        <p id="result-meta" class="result-meta"></p>
+        <button type="button" id="again-btn" class="btn btn-ghost">Check another file</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Runs entirely in your browser. No uploads, no tracking.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Never commit Revit models or test samples (they may contain client work)
+samples/
+*.rvt
+*.rfa
+*.rte
+*.rft
+*.000*.rvt
+
+# OS / sync clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Local tooling
+.claude/
